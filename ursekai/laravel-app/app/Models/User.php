@@ -7,10 +7,23 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
-
 class User extends Authenticatable implements JWTSubject
 {
     use HasFactory, Notifiable;
+
+    /**
+     * The primary key for the model.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'user_id';
+
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.
@@ -21,6 +34,7 @@ class User extends Authenticatable implements JWTSubject
         'username',
         'email',
         'password',
+        'password_hash',
         'display_name',
         'avatar_url',
         'bio',
@@ -33,6 +47,11 @@ class User extends Authenticatable implements JWTSubject
         'total_playtime_minutes',
         'notification_preferences',
         'privacy_settings',
+        'registration_date',
+        'last_login_date',
+        'is_active',
+        'role',
+        'preferred_language'
     ];
 
     /**
@@ -42,6 +61,7 @@ class User extends Authenticatable implements JWTSubject
      */
     protected $hidden = [
         'password',
+        'password_hash',
         'remember_token',
     ];
 
@@ -54,7 +74,8 @@ class User extends Authenticatable implements JWTSubject
     {
         return [
             'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+            'registration_date' => 'datetime',
+            'last_login_date' => 'datetime',
             'notification_preferences' => 'array',
             'privacy_settings' => 'array',
             'date_of_birth' => 'date',
@@ -68,7 +89,7 @@ class User extends Authenticatable implements JWTSubject
      */
     public function getJWTIdentifier()
     {
-        return $this->getKey();
+        return $this->getAttribute($this->primaryKey);
     }
 
     /**

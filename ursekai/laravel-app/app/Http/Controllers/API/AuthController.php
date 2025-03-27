@@ -40,9 +40,18 @@ class AuthController extends Controller
         }
 
         $user = User::create([
-            'name' => $request->name,
+            'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'display_name' => $request->username,
+            'is_active' => true,
+            'registration_date' => now(),
+            'role' => 'player',
+            'account_level' => 1,
+            'experience_points' => 0,
+            'total_playtime_minutes' => 0,
+            'preferred_language' => 'en',
+            'theme_preference' => 'system',
         ]);
 
         $token = Auth::guard('api')->login($user);
@@ -72,6 +81,11 @@ class AuthController extends Controller
         if (!$token = Auth::guard('api')->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
+
+        // Update last login date
+        $user = Auth::guard('api')->user();
+        $user->last_login_date = now();
+        $user->save();
 
         return $this->respondWithToken($token);
     }
