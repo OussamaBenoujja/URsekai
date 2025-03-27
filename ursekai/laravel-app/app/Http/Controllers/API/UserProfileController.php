@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Notification;
 use App\ApiResponser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -193,4 +194,247 @@ class UserProfileController extends Controller
         
         return $this->success($user->privacy_settings, 'Privacy settings updated successfully');
     }
+/**
+ * Get all notifications for the authenticated user.
+ *
+ * @param Request $request
+ * @return \Illuminate\Http\JsonResponse
+ */
+public function notifications(Request $request)
+{
+    $user = Auth::user();
+    
+    $query = Notification::where('user_id', $user->user_id);
+    
+    // Filter by read status if specified
+    if ($request->has('is_read')) {
+        $query->where('is_read', (bool)$request->is_read);
+    }
+    
+    // Filter by type if specified
+    if ($request->has('type')) {
+        $query->where('type', $request->type);
+    }
+    
+    // Filter by priority if specified
+    if ($request->has('priority')) {
+        $query->where('priority', $request->priority);
+    }
+    
+    // Order by priority (high to low) and then by date (newest first)
+    $notifications = $query->orderByRaw("FIELD(priority, 'urgent', 'high', 'normal', 'low')")
+                          ->orderBy('created_at', 'desc')
+                          ->paginate($request->input('per_page', 15));
+    
+    return $this->success($notifications);
+}
+
+/**
+ * Get count of unread notifications for the authenticated user.
+ *
+ * @return \Illuminate\Http\JsonResponse
+ */
+public function unreadNotificationsCount()
+{
+    $user = Auth::user();
+    
+    $count = Notification::where('user_id', $user->user_id)
+                        ->where('is_read', false)
+                        ->count();
+    
+    return $this->success(['count' => $count]);
+}
+
+/**
+ * Mark a notification as read.
+ *
+ * @param int $id
+ * @return \Illuminate\Http\JsonResponse
+ */
+public function markNotificationAsRead($id)
+{
+    $user = Auth::user();
+    
+    $notification = Notification::where('notification_id', $id)
+                                ->where('user_id', $user->user_id)
+                                ->firstOrFail();
+    
+    $notification->is_read = true;
+    $notification->read_at = now();
+    $notification->save();
+    
+    return $this->success($notification, 'Notification marked as read');
+}
+
+/**
+ * Mark all notifications as read.
+ *
+ * @return \Illuminate\Http\JsonResponse
+ */
+public function markAllNotificationsAsRead()
+{
+    $user = Auth::user();
+    
+    Notification::where('user_id', $user->user_id)
+                ->where('is_read', false)
+                ->update([
+                    'is_read' => true,
+                    'read_at' => now()
+                ]);
+    
+    return $this->success(null, 'All notifications marked as read');
+}
+
+/**
+ * Delete a notification.
+ *
+ * @param int $id
+ * @return \Illuminate\Http\JsonResponse
+ */
+public function deleteNotification($id)
+{
+    $user = Auth::user();
+    
+    $notification = Notification::where('notification_id', $id)
+                                ->where('user_id', $user->user_id)
+                                ->firstOrFail();
+    
+    $notification->delete();
+    
+    return $this->success(null, 'Notification deleted successfully');
+}
+
+/**
+ * Update notification preferences.
+ *
+ * @param Request $request
+ * @return \Illuminate\Http\JsonResponse
+ */
+public function updateNotificationPreferences(Request $request)
+{
+    $validator = Validator::make($request->all(), [
+        'notification_preferences' => 'required|array',
+    ]);
+
+    if ($validator->fails()) {
+        return $this->error('Validation failed', 422, $validator->errors());
+    }
+    
+    $user = Auth::user();
+    $user->notification_preferences = $request->notification_preferences;
+    $user->save();
+    
+    return $this->success($user->notification_preferences, 'Notification preferences updated successfully');
+}
+
+/**
+ * Get all friendships where this user is the requester.
+ */
+public function sentFriendships()
+{
+    return $this->hasMany(Friend::class, 'user_id', 'user_id');
+}
+
+/**
+ * Get all friendships where this user is the receiver.
+ */
+public function receivedFriendships()
+{
+    return $this->hasMany(Friend::class, 'friend_id', 'user_id');
+}
+
+/**
+ * Get all friends (accepted friendships)
+ */
+public function friends()
+{
+    return $this->sentFriendships()->where('status', 'accepted')
+        ->with('friend')
+        ->get()
+        ->map(function ($friendship) {
+            return $friendship->friend;
+        })
+        ->merge(
+            $this->receivedFriendships()->where('status', 'accepted')
+                ->with('user')
+                ->get()
+                ->map(function ($friendship) {
+                    return $friendship->user;
+                })
+        );
+}
+
+/**
+ * Check if user is friends with another user
+ * 
+ * @param int $userId
+ * @return bool
+ */
+public function isFriendsWith($userId)
+{
+    return $this->sentFriendships()
+        ->where('friend_id', $userId)
+        ->where('status', 'accepted')
+        ->exists() || 
+        $this->receivedFriendships()
+        ->where('user_id', $userId)
+        ->where('status', 'accepted')
+        ->exists();
+}
+
+/**
+ * Check if user has a pending friend request from another user
+ * 
+ * @param int $userId
+ * @return bool
+ */
+public function hasPendingFriendRequestFrom($userId)
+{
+    return $this->receivedFriendships()
+        ->where('user_id', $userId)
+        ->where('status', 'pending')
+        ->exists();
+}
+
+/**
+ * Check if user has sent a pending friend request to another user
+ * 
+ * @param int $userId
+ * @return bool
+ */
+public function hasSentPendingFriendRequestTo($userId)
+{
+    return $this->sentFriendships()
+        ->where('friend_id', $userId)
+        ->where('status', 'pending')
+        ->exists();
+}
+
+/**
+ * Check if user has blocked another user
+ * 
+ * @param int $userId
+ * @return bool
+ */
+public function hasBlocked($userId)
+{
+    return $this->sentFriendships()
+        ->where('friend_id', $userId)
+        ->where('status', 'blocked')
+        ->exists();
+}
+
+/**
+ * Check if user is blocked by another user
+ * 
+ * @param int $userId
+ * @return bool
+ */
+public function isBlockedBy($userId)
+{
+    return $this->receivedFriendships()
+        ->where('user_id', $userId)
+        ->where('status', 'blocked')
+        ->exists();
+}
 }
