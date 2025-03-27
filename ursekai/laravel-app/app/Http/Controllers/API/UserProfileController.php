@@ -33,10 +33,6 @@ class UserProfileController extends Controller
     public function profile()
     {
         $user = Auth::user();
-        
-        // You might want to load relationships here
-        // $user->load('badges', 'achievements');
-        
         return $this->success($user);
     }
     
@@ -50,9 +46,6 @@ class UserProfileController extends Controller
     {
         $user = User::findOrFail($id);
         
-        // Load necessary relationships for public profile
-        // $user->load('badges', 'achievements');
-        
         // Return only public information
         return $this->success([
             'id' => $user->id,
@@ -62,7 +55,6 @@ class UserProfileController extends Controller
             'country' => $user->country,
             'account_level' => $user->account_level,
             'created_at' => $user->created_at,
-            // Add other public fields here
         ]);
     }
 
@@ -180,29 +172,6 @@ class UserProfileController extends Controller
     }
 
     /**
-     * Update notification preferences.
-     *
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function updateNotificationPreferences(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'notification_preferences' => 'required|array',
-        ]);
-
-        if ($validator->fails()) {
-            return $this->error('Validation failed', 422, $validator->errors());
-        }
-        
-        $user = Auth::user();
-        $user->notification_preferences = $request->notification_preferences;
-        $user->save();
-        
-        return $this->success($user->notification_preferences, 'Notification preferences updated successfully');
-    }
-
-    /**
      * Update privacy settings.
      *
      * @param Request $request
@@ -223,63 +192,5 @@ class UserProfileController extends Controller
         $user->save();
         
         return $this->success($user->privacy_settings, 'Privacy settings updated successfully');
-    }
-
-    /**
-     * Get user's dashboard data.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function dashboard()
-    {
-        $user = Auth::user();
-        
-        // Load relationships and analytics data
-        // $user->load('recentGames', 'friends', 'notifications');
-        
-        // Gather dashboard data
-        $dashboardData = [
-            'user' => $user,
-            'stats' => [
-                'total_playtime' => $user->total_playtime_minutes,
-                'account_level' => $user->account_level,
-                'experience_points' => $user->experience_points,
-                // Add more stats here
-            ],
-            // Add more dashboard sections here
-        ];
-        
-        return $this->success($dashboardData);
-    }
-
-    /**
-     * Get user's notifications.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function notifications()
-    {
-        $user = Auth::user();
-        $notifications = $user->notifications()->latest()->paginate(20);
-        
-        return $this->success($notifications);
-    }
-
-    /**
-     * Mark a notification as read.
-     *
-     * @param int $notificationId
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function markNotificationAsRead($notificationId)
-    {
-        $user = Auth::user();
-        $notification = $user->notifications()->findOrFail($notificationId);
-        
-        $notification->is_read = true;
-        $notification->read_at = now();
-        $notification->save();
-        
-        return $this->success(null, 'Notification marked as read');
     }
 }
