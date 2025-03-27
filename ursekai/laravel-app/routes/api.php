@@ -8,6 +8,13 @@ use App\Http\Controllers\API\NotificationController;
 use App\Http\Controllers\API\GameController;
 use App\Http\Controllers\API\GameReviewController;
 use App\Http\Controllers\API\DeveloperGameController;
+use App\Http\Controllers\API\DeveloperGameAchievementController;
+use App\Http\Controllers\API\DeveloperGameLeaderboardController;
+use App\Http\Controllers\API\DeveloperGameAnalyticsController;
+use App\Http\Controllers\API\AdminGameController;
+use App\Http\Controllers\API\AdminGameCategoryController;
+use App\Http\Controllers\API\AdminGameTagController;
+
 
 
 /*
@@ -88,7 +95,7 @@ Route::group(['middleware' => 'auth:api'], function () {
 });
 
 
-// Game management routes (to be added to your routes/api.php file)
+// Game management routes 
 
 // Public game routes
 Route::group(['prefix' => 'games'], function () {
