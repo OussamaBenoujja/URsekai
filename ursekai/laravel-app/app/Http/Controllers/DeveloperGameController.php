@@ -411,16 +411,24 @@ class DeveloperGameController extends Controller
             return $this->error('Validation failed', 422, $validator->errors());
         }
 
-        // Check platform settings for max file size
-        $maxFileSizeMB = \App\Models\SystemSetting::where('category', 'game')
-                                                ->where('name', 'max_game_file_size_mb')
-                                                ->value('value') ?? 100;
-                                                
-        $maxFileSize = $maxFileSizeMB * 1024 * 1024; // Convert to bytes
-        
-        if ($request->file('asset_file')->getSize() > $maxFileSize) {
-            return $this->error("File size exceeds the maximum allowed size of {$maxFileSizeMB}MB", 422);
-        }
+            // Get asset type
+            $assetType = $request->asset_type;
+
+            // Set max file size based on asset type
+            if ($assetType === 'main_game') {
+                $maxFileSizeMB = 2048; // 2GB for main game assets
+            } else {
+                // For other asset types, check settings or use a smaller default
+                $maxFileSizeMB = \App\Models\SystemSetting::where('category', 'game')
+                                                    ->where('name', 'max_game_file_size_mb')
+                                                    ->value('value') ?? 100;
+            }
+                                                    
+            $maxFileSize = $maxFileSizeMB * 1024 * 1024; // Convert to bytes
+
+            if ($request->file('asset_file')->getSize() > $maxFileSize) {
+                return $this->error("File size exceeds the maximum allowed size of {$maxFileSizeMB}MB", 422);
+            }
 
         // Check allowed file types
         $allowedTypes = \App\Models\SystemSetting::where('category', 'game')
