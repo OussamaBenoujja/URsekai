@@ -1,0 +1,13 @@
+                        showMessage('An error occurred during registration. Please try again.', 'alert-danger');
+                    });
+                });
+
+                function showMessage(msg, className) {
+                    authMessage.textContent = msg;
+                    authMessage.className = `alert ${className}`; // Use alert-danger or alert-success
+                    authMessage.style.display = 'block';
+                }
+            });
+        </script>
+    </body>
+</html>
