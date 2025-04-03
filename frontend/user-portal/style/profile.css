@@ -1,0 +1,13 @@
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+    
+    .game-info h4 {
+        font-size: 16px;
+    }
+    
+    .hours {
+        font-size: 16px;
+    }
+}
