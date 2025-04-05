@@ -1,25 +1,7 @@
-                    if (bytes < 1073741824)
-                        return (bytes / 1048576).toFixed(1) + " MB";
-                    return (bytes / 1073741824).toFixed(1) + " GB";
-                }
+                    .catch(error => {
+                        console.error("Error loading or inserting navbar:", error);
+                    });
             });
-
-            // Navbar Component Loader
-            document.addEventListener("DOMContentLoaded", function() {
-                fetch("/dev-portal/components/navbar.html")
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error(`Failed to load navbar: ${response.status} ${response.statusText}`);
-                        }
-                        return response.text();
-                    })
-                    .then(html => {
-                        const tempContainer = document.createElement("div");
-                        tempContainer.innerHTML = html;
-                        const navbarElement = tempContainer.firstElementChild;
-                        if (navbarElement) {
-                            document.body.insertBefore(navbarElement, document.body.firstChild);
-                        } else {
-                            console.error("Could not find a valid element node in fetched navbar HTML.");
-                        }
-                    })
+        </script>
+    </body>
+</html>
