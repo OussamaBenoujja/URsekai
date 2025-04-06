@@ -1,25 +1,5 @@
-                                }, 1500);
-                            } else {
-                                showMessage(`Error: ${response.message || 'Upload failed.'} ${response.errors ? JSON.stringify(response.errors) : ''}`, 'error');
-                            }
-                        } catch (e) {
-                             showMessage(`Error: Invalid response from server. Status: ${xhr.status}`, 'error');
-                             console.error("Response parsing error:", e, "Response text:", xhr.responseText);
-                        }
-                    };
-
-                    xhr.onerror = function() {
-                        uploadButton.disabled = false;
-                        uploadButton.innerHTML = '<i class="fas fa-cloud-upload-alt"></i> Upload Game';
-                        uploadProgress.style.display = 'none';
-                        showMessage('Error: Network error during upload.', 'error');
-                    };
-
-                    xhr.send(formData);
-                });
-
-                function showMessage(msg, type) {
-                    messageContainer.textContent = msg;
-                    messageContainer.className = `alert ${type === 'success' ? 'alert-success' : 'alert-danger'}`;
-                    messageContainer.style.display = msg ? 'block' : 'none';
-                }
+            });
+        </script>
+        <script src="../components/navbar-loader.js"></script> <!-- Load the navbar -->
+    </body>
+</html>
