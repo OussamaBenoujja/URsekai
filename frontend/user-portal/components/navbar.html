@@ -1,0 +1,76 @@
+<header class="navbar-header">
+  <nav class="navbar">
+    <div class="navbar-left">
+      <div class="navbar-logo">
+        <a href="/">URSEKAI</a>
+      </div>
+      <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="navbar-links" id="navbar-links">
+        <!-- Links added dynamically by JS if logged in -->
+        <!-- Example structure (added by JS): 
+        <li><a href="/catalog">Games</a></li>
+        <li><a href="/community">Community</a></li>
+        <li><a href="/leaderboard">Leaderboard</a></li>
+        <li><a href="/profile">Achievements</a></li> 
+        -->
+      </ul>
+    </div>
+    <div class="navbar-right">
+      <div class="navbar-search">
+        <span class="search-icon-wrapper" id="navbar-search-icon-wrapper">
+          <img src="https://cdn-icons-png.flaticon.com/512/3031/3031293.png" alt="Search" class="search-icon" />
+        </span>
+        <input type="text" placeholder="Search games..." id="navbar-search-input" />
+        <button id="navbar-search-btn" aria-label="Search" style="display: none;">Search</button> <!-- Hidden, triggered by Enter or icon click -->
+      </div>
+      
+      <!-- Notification Button -->
+      <div class="navbar-notifications" id="navbar-notifications">
+        <div class="notification-bell">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="0" class="notification-icon">
+            <path d="M12 22c1.1 0 2-.9 2-2h-4a2 2 0 002 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/>
+          </svg>
+          <span class="notification-badge" id="notification-badge">0</span>
+        </div>
+      </div>
+      
+      <div class="navbar-actions" id="navbar-actions">
+        <!-- Dynamic: login/signup or profile -->
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Notification Dropdown Menu -->
+  <div class="notification-dropdown" id="notification-dropdown">
+    <div class="notification-header">
+      <h3>Notifications</h3>
+      <button id="mark-all-read">Mark all as read</button>
+    </div>
+    <ul id="notification-list">
+      <!-- Notifications will be added dynamically -->
+      <!-- Example:
+      <li class="notification-item unread">
+        <div class="notification-content">
+          <p>New game added to your wishlist is now available</p>
+          <span class="notification-time">2 hours ago</span>
+        </div>
+      </li>
+      -->
+    </ul>
+    <div class="notification-footer">
+      <a href="/notifications">View all notifications</a>
+    </div>
+  </div>
+  
+  <div class="navbar-profile-dropdown" id="navbar-profile-dropdown">
+    <ul>
+      <li><a href="/profile">Profile</a></li>
+      <li><a href="/settings">Settings</a></li> <!-- Assuming a /settings route exists or will be added -->
+      <li><button id="navbar-logout-btn">Logout</button></li>
+    </ul>
+  </div>
+</header>

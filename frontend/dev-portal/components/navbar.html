@@ -1,0 +1,45 @@
+<!-- Steam-inspired Header/Navbar for URsekai Developer Portal -->
+<header id="ursekai-header">
+  <div class="header-container">
+    <!-- Logo and Title -->
+    <div class="header-brand">
+      <img src="../assets/images/ursekai-logo.png" alt="URsekai" class="logo" onerror="this.src='https://via.placeholder.com/40x40?text=UR';this.onerror='';">
+      <div class="brand-text">
+        <h1>URsekai</h1>
+        <span class="brand-subtitle">Developer Portal</span>
+      </div>
+    </div>
+    
+    <!-- Navigation -->
+    <nav class="header-nav">
+      <ul>
+        <li><a href="/developer/games"><i class="fas fa-gamepad"></i>My Games</a></li>
+        <li><a href="/developer"><i class="fas fa-chart-line"></i>Analytics</a></li>
+        <li><a href="/developer/upload"><i class="fas fa-edit"></i>Editor</a></li>
+        <li><a href="/developer/settings"><i class="fas fa-cog"></i>Settings</a></li>
+        <li><a href="/developer/test-game"><i class="fas fa-play-circle"></i>Test Game</a></li>
+      </ul>
+    </nav>
+    
+    <!-- User Controls -->
+    <div class="header-controls">
+      
+      
+      <div class="user-profile" id="user-profile">
+        <div class="user-avatar">
+          <img id="user-avatar-img" src="https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg" alt="User Avatar" onerror="this.src='https://via.placeholder.com/40x40?text=UR';this.onerror=null;" style="width:40px;height:40px;border-radius:50%;object-fit:cover;">
+        </div>
+        <span class="username" id="username">Developer</span>
+        <i class="fas fa-chevron-down"></i>
+        <!-- Dropdown Menu -->
+        <div class="user-dropdown">
+          <ul>
+            <li><a href="/developer/profile"><i class="fas fa-user-circle"></i>Profile</a></li>
+            <li><a href="/developer/settings"><i class="fas fa-cog"></i>Settings</a></li>
+            <li><a href="#" id="logout-link"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,267 @@
+/* Steam-inspired Header/Navbar Styles for URsekai Developer Portal */
+
+/* CSS Variables for the theme */
+:root {
+  /* Steam-inspired color palette */
+  --steam-bg-dark: #171a21;
+  --steam-bg-medium: #1b2838;
+  --steam-bg-light: #2a475e;
+  --steam-text-primary: #ffffff;
+  --steam-text-secondary: #acb2b8;
+  --steam-text-muted: #8f98a0;
+  --steam-accent-blue: #1a9fff;
+  --steam-accent-green: #5ba32b;
+  --steam-accent-blue-hover: #66c0f4;
+  --steam-border-color: #4d596a;
+  
+  /* Shadow variables */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 3px 8px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Header styles */
+#ursekai-header {
+  background: linear-gradient(to bottom, #171a21, #1b2838) !important;
+  color: #ffffff !important;
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  font-family: "Motiva Sans", Arial, Helvetica, sans-serif;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 2rem;
+  margin: 0 auto;
+  max-width: 1400px;
+}
+
+/* Brand styles */
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-text h1 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.brand-subtitle {
+  font-size: 0.75rem;
+  color: var(--steam-text-secondary);
+}
+
+/* Navigation styles */
+#ursekai-header .header-nav ul {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 0.5rem;
+}
+
+.header-nav li a {
+  color: #acb2b8 !important;
+  text-decoration: none;
+  padding: 0.75rem 1rem;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.header-nav li a:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
+}
+
+.header-nav li a i {
+  font-size: 0.875rem;
+}
+
+/* User controls section */
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Theme toggle */
+.theme-toggle {
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.theme-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Notifications */
+.user-notifications {
+  position: relative;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+  color: white;
+}
+
+.user-notifications:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.notification-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  background-color: #e8563f;
+  color: white;
+  font-size: 0.625rem;
+  min-width: 16px;
+  height: 16px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  padding: 0 4px;
+}
+
+/* User profile section */
+.user-profile {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.user-profile:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--steam-accent-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.username {
+  font-size: 0.875rem;
+  max-width: 120px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Dropdown menu */
+.user-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 0.5rem;
+  background-color: #171a21 !important;
+  border: 1px solid var(--steam-border-color);
+  border-radius: 3px;
+  min-width: 180px;
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.2s ease;
+  z-index: 1001;
+}
+
+.user-profile:focus .user-dropdown,
+.user-profile:hover .user-dropdown,
+.user-dropdown:hover {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.user-dropdown ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0.5rem 0;
+}
+
+.user-dropdown li a {
+  color: var(--steam-text-secondary);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.user-dropdown li a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--steam-text-primary);
+}
+
+.user-dropdown li a i {
+  width: 16px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 992px) {
+  .header-container {
+    padding: 0.5rem 1rem;
+  }
+  
+  .brand-subtitle {
+    display: none;
+  }
+  
+  .header-nav {
+    display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .header-container {
+    padding: 0.5rem;
+  }
+  
+  .username {
+    display: none;
+  }
+}

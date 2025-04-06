@@ -1,0 +1,252 @@
+{
+	"info": {
+		"_postman_id": "d0a8b729-841d-4795-b774-d64a801a8a51",
+		"name": "ursekai",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "43019049"
+	},
+	"item": [
+		{
+			"name": "authentication",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "UserRelated",
+			"item": [
+				{
+					"name": "markNotificationAsRead",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3NDMwNjk4MjUsImV4cCI6MTc0MzY3NDYyNSwibmJmIjoxNzQzMDY5ODI1LCJqdGkiOiJMajJibzFzdmU3ZkQzcHlmIiwic3ViIjoiMyIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.gyacwrNOExYj8bIm6iriv2AMnvgdflSmG26Zhz__bFk"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"is_read\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/profile/notifications/{id}"
+					},
+					"response": []
+				},
+				{
+					"name": "getUserDashboard",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3NDMwNjk4MjUsImV4cCI6MTc0MzY3NDYyNSwibmJmIjoxNzQzMDY5ODI1LCJqdGkiOiJMajJibzFzdmU3ZkQzcHlmIiwic3ViIjoiMyIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.gyacwrNOExYj8bIm6iriv2AMnvgdflSmG26Zhz__bFk"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"privacy_settings\": {\r\n    \"profile_visibility\": \"friends\",\r\n    \"show_online_status\": true,\r\n    \"show_game_activity\": true,\r\n    \"allow_friend_requests\": true,\r\n    \"show_email\": false\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/profile/privacy"
+					},
+					"response": []
+				},
+				{
+					"name": "updatePrivcySettings",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3NDMwNjk4MjUsImV4cCI6MTc0MzY3NDYyNSwibmJmIjoxNzQzMDY5ODI1LCJqdGkiOiJMajJibzFzdmU3ZkQzcHlmIiwic3ViIjoiMyIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.gyacwrNOExYj8bIm6iriv2AMnvgdflSmG26Zhz__bFk"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"privacy_settings\": {\r\n    \"profile_visibility\": \"friends\",\r\n    \"show_online_status\": true,\r\n    \"show_game_activity\": true,\r\n    \"allow_friend_requests\": true,\r\n    \"show_email\": false\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/profile/privacy"
+					},
+					"response": []
+				},
+				{
+					"name": "updatePassword",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3NDMwNjk4MjUsImV4cCI6MTc0MzY3NDYyNSwibmJmIjoxNzQzMDY5ODI1LCJqdGkiOiJMajJibzFzdmU3ZkQzcHlmIiwic3ViIjoiMyIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.gyacwrNOExYj8bIm6iriv2AMnvgdflSmG26Zhz__bFk"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"current_password\": \"oldpassword\",\r\n  \"password\": \"newpassword\",\r\n  \"password_confirmation\": \"newpassword\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/profile/password"
+					},
+					"response": []
+				},
+				{
+					"name": "notificationPrefrences",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3NDMwNjk4MjUsImV4cCI6MTc0MzY3NDYyNSwibmJmIjoxNzQzMDY5ODI1LCJqdGkiOiJMajJibzFzdmU3ZkQzcHlmIiwic3ViIjoiMyIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.gyacwrNOExYj8bIm6iriv2AMnvgdflSmG26Zhz__bFk"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"current_password\": \"oldpassword\",\r\n  \"password\": \"newpassword\",\r\n  \"password_confirmation\": \"newpassword\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/profile/password"
+					},
+					"response": []
+				},
+				{
+					"name": "updateUserAvatar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3NDMwNjk4MjUsImV4cCI6MTc0MzY3NDYyNSwibmJmIjoxNzQzMDY5ODI1LCJqdGkiOiJMajJibzFzdmU3ZkQzcHlmIiwic3ViIjoiMyIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.gyacwrNOExYj8bIm6iriv2AMnvgdflSmG26Zhz__bFk"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"display_name\": \"Updated Name\",\r\n  \"bio\": \"This is my updated bio\",\r\n  \"country\": \"United States\",\r\n  \"city\": \"New York\",\r\n  \"theme_preference\": \"dark\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/profile"
+					},
+					"response": []
+				},
+				{
+					"name": "updateUserProfile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3NDMwNjk4MjUsImV4cCI6MTc0MzY3NDYyNSwibmJmIjoxNzQzMDY5ODI1LCJqdGkiOiJMajJibzFzdmU3ZkQzcHlmIiwic3ViIjoiMyIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.gyacwrNOExYj8bIm6iriv2AMnvgdflSmG26Zhz__bFk"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"display_name\": \"Updated Name\",\r\n  \"bio\": \"This is my updated bio\",\r\n  \"country\": \"United States\",\r\n  \"city\": \"New York\",\r\n  \"theme_preference\": \"dark\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/profile"
+					},
+					"response": []
+				},
+				{
+					"name": "getUserNotifications",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "getPublicUser",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "getCurrentUser",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "getAuthenticatedUserInfo",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "getAuthenticatedUserInfo Copy",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

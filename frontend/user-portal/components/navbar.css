@@ -1,0 +1,819 @@
+/* Navbar specific styles extracted from home.css and authStyle.css */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px; /* Using padding from home.css */
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+}
+
+.logo {
+    font-size: 20px; /* Using size from home.css */
+    font-weight: 700;
+    color: #4361ee;
+    text-decoration: none;
+}
+
+/* Navigation */
+nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0; /* Reset margin */
+    padding: 0; /* Reset padding */
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li:last-child {
+    margin-right: 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    transition: color 0.3s;
+    padding: 5px 0;
+    border-bottom: 2px solid transparent; /* Prepare for active state */
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    color: #4361ee;
+    border-bottom-color: #4361ee;
+}
+
+/* Search and User */
+.search-user {
+    display: flex;
+    align-items: center;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.search-input {
+    padding: 6px 12px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    font-size: 14px;
+    width: 180px;
+    outline: none;
+}
+
+.search-button {
+    background: none;
+    border: none;
+    color: #777;
+    cursor: pointer;
+    margin-left: -30px; /* Overlap input */
+    padding: 0 5px; /* Add some padding */
+}
+
+.user-avatar {
+    width: 32px; /* Consistent size */
+    height: 32px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex; /* Center potential text link */
+    align-items: center; /* Center potential text link */
+    justify-content: center; /* Center potential text link */
+    background-color: #eee; /* Placeholder background */
+}
+
+.user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.user-avatar a {
+    font-size: 12px;
+    color: #333;
+    text-decoration: none;
+    padding: 5px;
+    white-space: nowrap;
+}
+
+/* Logout Button (Style added via JS in homeAuth.js, but can be predefined) */
+.logout-button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* Responsive adjustments for navbar elements */
+@media (max-width: 768px) {
+    .search-input {
+        width: 150px;
+    }
+
+    nav ul li {
+        margin-right: 10px;
+    }
+    nav ul li a {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 600px) { /* Adjust breakpoint if needed */
+    header {
+        flex-wrap: wrap;
+        padding: 10px 15px;
+    }
+
+    nav {
+        order: 3; /* Move nav below logo and search/user */
+        width: 100%;
+        margin-top: 10px;
+        border-top: 1px solid #eee;
+        padding-top: 10px;
+    }
+
+    nav ul {
+        justify-content: space-around; /* Space out links */
+    }
+
+    nav ul li {
+        margin-right: 0;
+    }
+
+    .search-user {
+        order: 2; /* Keep search/user on the right */
+    }
+
+    .logo {
+        order: 1;
+    }
+
+     .search-input {
+        width: 120px;
+    }
+}
+
+/* Navbar Styles - Updated to match image */
+#navbar-mount .navbar-header {
+  width: 100%;
+  background: #fff; /* White background */
+  border-bottom: 1px solid #eee; /* Light border */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 0.8rem 0; /* Adjust vertical padding */
+}
+
+#navbar-mount .navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  gap: 2rem; /* Add gap between navbar sections */
+}
+
+#navbar-mount .navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 3rem; /* Increase space between logo and links */
+}
+
+#navbar-mount .navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-left: 2rem; /* Add left margin to push away from navbar-left */
+}
+
+#navbar-mount .navbar-logo a {
+  color: #4e54c8; /* Blue color from image */
+  font-size: 1.8rem; /* Slightly larger */
+  font-weight: bold;
+  text-decoration: none;
+  letter-spacing: 1px;
+}
+
+#navbar-mount .navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 2.5rem; /* Increase space between nav links */
+  margin: 0;
+  padding: 0;
+}
+
+#navbar-mount .navbar-links li a {
+  color: #555; /* Grey color for links */
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+#navbar-mount .navbar-links li a:hover {
+  color: #4e54c8; /* Blue on hover */
+}
+
+#navbar-mount .navbar-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+#navbar-mount .search-icon-wrapper {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer; /* Make icon clickable */
+}
+
+#navbar-mount .search-icon {
+  width: 16px;
+  height: 16px;
+  opacity: 0.6;
+}
+
+#navbar-mount .navbar-search input {
+  padding: 0.6rem 1rem 0.6rem 2.5rem; /* Adjust padding for icon */
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  outline: none;
+  font-size: 0.95rem;
+  min-width: 250px; /* Adjust width as needed */
+  transition: border-color 0.2s;
+}
+
+#navbar-mount .navbar-search input:focus {
+  border-color: #4e54c8;
+}
+
+/* Hide the actual search button, we trigger search via icon/enter */
+#navbar-mount #navbar-search-btn {
+  display: none;
+}
+
+#navbar-mount .navbar-actions {
+  display: flex;
+  align-items: center;
+}
+
+/* Login/Signup Buttons */
+#navbar-mount .navbar-btn {
+  background: #4e54c8;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 0.5rem 1.2rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-left: 0.5rem; /* Add some space between buttons */
+}
+
+#navbar-mount .navbar-btn:hover {
+  background: #2326a3;
+}
+
+/* Profile Image */
+#navbar-mount .navbar-profile {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+
+#navbar-mount .navbar-profile-img {
+  width: 38px; /* Slightly larger */
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid transparent; /* No border initially */
+  transition: border-color 0.2s;
+}
+
+#navbar-mount .navbar-profile:hover .navbar-profile-img {
+  border-color: #4e54c8; /* Blue border on hover */
+}
+
+/* Dropdown */
+#navbar-mount .navbar-profile-dropdown {
+  display: none;
+  position: absolute;
+  right: 1.5rem;
+  top: calc(100% + 10px); /* Position below navbar */
+  background: #fff; /* White background */
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  min-width: 180px;
+  z-index: 2000;
+  border: 1px solid #eee;
+}
+
+#navbar-mount .navbar-profile-dropdown.active {
+  display: block;
+}
+
+#navbar-mount .navbar-profile-dropdown ul {
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem 0;
+  display: flex;
+  flex-direction: column; /* Make items stack vertically */
+  width: 100%;
+}
+
+#navbar-mount .navbar-profile-dropdown li {
+  padding: 0;
+  margin: 0; /* Reset any margin that might be inherited */
+  width: 100%; /* Ensure list items take full width of dropdown */
+}
+
+#navbar-mount .navbar-profile-dropdown li a,
+#navbar-mount .navbar-profile-dropdown li button {
+  display: block;
+  color: #333; /* Darker text */
+  text-decoration: none;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font-size: 0.95rem;
+  cursor: pointer;
+  padding: 0.6rem 1.2rem;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+#navbar-mount .navbar-profile-dropdown li a:hover,
+#navbar-mount .navbar-profile-dropdown li button:hover {
+  background-color: #f5f5f5; /* Light grey background on hover */
+  color: #4e54c8; /* Blue text on hover */
+}
+
+/* Remove default styles from previous version if they exist */
+header {
+    /* Remove old styles if conflicting */
+}
+.logo {
+    /* Remove old styles if conflicting */
+}
+nav ul {
+    /* Remove old styles if conflicting */
+}
+/* ... etc for other potentially conflicting old styles ... */
+
+#navbar-mount .navbar-profile {
+    position: relative;
+    display: inline-block;
+}
+
+#navbar-mount #navbar-profile-dropdown {
+    position: absolute;
+    top: 48px; /* Adjust if your avatar is a different size */
+    right: 0;
+    min-width: 160px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+    z-index: 1000;
+    display: none;
+    padding: 12px 0;
+}
+
+#navbar-mount #navbar-profile-dropdown.active {
+    display: block;
+}
+
+#navbar-mount #navbar-profile-dropdown ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0; /* Remove any gap between items */
+}
+
+/* Notification Styles */
+#navbar-mount .navbar-notifications {
+  position: relative;
+  margin: 0 1.5rem;
+  cursor: pointer;
+}
+
+#navbar-mount .notification-bell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#navbar-mount .notification-icon {
+  width: 22px;
+  height: 22px;
+  color: #000; /* Solid black color */
+  opacity: 1; /* Full opacity */
+  transition: color 0.2s;
+}
+
+#navbar-mount .notification-bell:hover .notification-icon {
+  color: #4e54c8; /* Change to brand blue on hover */
+}
+
+#navbar-mount .notification-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #ff3e55;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  min-width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+#navbar-mount .notification-dropdown {
+  display: none;
+  position: absolute;
+  right: 7rem; /* Position to align with notification bell */
+  top: calc(100% + 10px);
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  min-width: 320px;
+  max-width: 400px;
+  max-height: 450px;
+  overflow: auto;
+  z-index: 2000;
+  border: 1px solid #eee;
+}
+
+#navbar-mount .notification-dropdown.active {
+  display: block;
+}
+
+#navbar-mount .notification-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid #eee;
+}
+
+#navbar-mount .notification-header h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: #333;
+}
+
+#navbar-mount #mark-all-read {
+  background: none;
+  border: none;
+  color: #4e54c8;
+  font-size: 0.8rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+#navbar-mount #mark-all-read:hover {
+  background-color: #f0f2ff;
+}
+
+#navbar-mount #notification-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+#navbar-mount .notification-item {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f3f3f3;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+#navbar-mount .notification-item:hover {
+  background-color: #f7f9ff;
+}
+
+#navbar-mount .notification-item.unread {
+  background-color: #f0f7ff;
+}
+
+#navbar-mount .notification-item.unread::before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: #4e54c8;
+}
+
+#navbar-mount .notification-content {
+  position: relative;
+}
+
+#navbar-mount .notification-content p {
+  margin: 0 0 4px 0;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+#navbar-mount .notification-time {
+  display: block;
+  font-size: 0.75rem;
+  color: #777;
+}
+
+#navbar-mount .notification-footer {
+  padding: 10px 16px;
+  text-align: center;
+  border-top: 1px solid #eee;
+}
+
+#navbar-mount .notification-footer a {
+  color: #4e54c8;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+#navbar-mount .notification-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Mobile Menu Toggle Button */
+#navbar-mount .mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 30px;
+  height: 24px;
+  position: relative;
+  margin-left: 10px;
+  z-index: 1001;
+}
+
+#navbar-mount .mobile-menu-toggle span {
+  display: block;
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  background: #4e54c8;
+  border-radius: 3px;
+  opacity: 1;
+  left: 0;
+  transform: rotate(0deg);
+  transition: .25s ease-in-out;
+}
+
+#navbar-mount .mobile-menu-toggle span:nth-child(1) {
+  top: 0px;
+}
+
+#navbar-mount .mobile-menu-toggle span:nth-child(2) {
+  top: 10px;
+}
+
+#navbar-mount .mobile-menu-toggle span:nth-child(3) {
+  top: 20px;
+}
+
+#navbar-mount .mobile-menu-toggle.active span:nth-child(1) {
+  top: 10px;
+  transform: rotate(135deg);
+}
+
+#navbar-mount .mobile-menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+  left: -60px;
+}
+
+#navbar-mount .mobile-menu-toggle.active span:nth-child(3) {
+  top: 10px;
+  transform: rotate(-135deg);
+}
+
+/* Enhanced Responsive Design for Navbar */
+@media (max-width: 1024px) {
+  #navbar-mount .navbar-search input {
+    min-width: 200px;
+  }
+  
+  #navbar-mount .navbar-links {
+    gap: 1.5rem;
+  }
+  
+  #navbar-mount .notification-dropdown {
+    right: 0;
+    width: 320px;
+  }
+}
+
+@media (max-width: 900px) {
+  #navbar-mount .navbar {
+    padding: 0 1rem;
+  }
+  
+  #navbar-mount .navbar-search input {
+    min-width: 170px;
+  }
+  
+  #navbar-mount .navbar-links {
+    gap: 1rem;
+  }
+  
+  #navbar-mount .navbar-links li a {
+    font-size: 0.9rem;
+  }
+  
+  #navbar-mount .navbar-notifications {
+    margin: 0 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  #navbar-mount .mobile-menu-toggle {
+    display: block;
+  }
+  
+  #navbar-mount .navbar-left {
+    gap: 1rem;
+  }
+  
+  #navbar-mount .navbar-links {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 80%;
+    max-width: 300px;
+    height: 100vh;
+    flex-direction: column;
+    background: #fff;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    padding: 80px 1.5rem 1.5rem;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    gap: 0;
+  }
+  
+  #navbar-mount .navbar-links.active {
+    left: 0;
+  }
+  
+  #navbar-mount .navbar-links li {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  #navbar-mount .navbar-links li a {
+    display: block;
+    padding: 15px 0;
+    font-size: 1rem;
+    border-bottom: 1px solid #eee;
+    width: 100%;
+  }
+  
+  #navbar-mount .navbar-search input {
+    min-width: 150px;
+  }
+  
+  #navbar-mount .notification-dropdown {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: none;
+    border-radius: 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+  
+  #navbar-mount .navbar-profile-dropdown {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: none;
+    border-radius: 0;
+  }
+  
+  /* Overlay when menu is open */
+  #navbar-mount .menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 999;
+  }
+  
+  #navbar-mount .menu-overlay.active {
+    display: block;
+  }
+  
+  /* Adjust navbar-right to better fit mobile */
+  #navbar-mount .navbar-right {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 576px) {
+  #navbar-mount .navbar {
+    padding: 0 0.8rem;
+  }
+  
+  #navbar-mount .navbar-logo a {
+    font-size: 1.5rem;
+  }
+  
+  #navbar-mount .navbar-search {
+    display: none;
+  }
+  
+  /* Add a search button in mobile view that expands to full width when clicked */
+  #navbar-mount .mobile-search-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+  }
+  
+  #navbar-mount .navbar-search.mobile-expanded {
+    display: flex;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+  }
+  
+  #navbar-mount .navbar-search.mobile-expanded input {
+    width: 100%;
+    min-width: 100%;
+  }
+  
+  #navbar-mount .navbar-right {
+    gap: 0.5rem;
+  }
+  
+  #navbar-mount .navbar-notifications {
+    margin: 0 0.5rem;
+  }
+  
+  #navbar-mount .notification-badge {
+    min-width: 16px;
+    height: 16px;
+    font-size: 0.65rem;
+  }
+}
+
+/* Touch-friendly enhancements for mobile */
+@media (hover: none) {
+  #navbar-mount .navbar-links li a {
+    padding: 12px 0;
+  }
+  
+  #navbar-mount .navbar-profile-dropdown li a,
+  #navbar-mount .navbar-profile-dropdown li button {
+    padding: 12px 1.2rem;
+  }
+  
+  #navbar-mount .notification-item {
+    padding: 14px 16px;
+  }
+}
