@@ -1,0 +1,39 @@
+        height: calc(100vh - 64px);
+    }
+
+    main {
+        margin-left: 250px !important; /* Make space for sidebar */
+        padding: 2rem; /* Restore padding */
+        padding-top: 80px; /* Keep space below header */
+        max-width: calc(100% - 250px); 
+    }
+
+    .sidebar-toggle {
+        display: none; 
+    }
+}
+
+/* Content Section Display (like index.css) */
+.content-section {
+    display: none; 
+}
+
+.content-section.active {
+    display: block; 
+}
+
+/* Add other styles specific to developer.html content here */
+/* e.g., dashboard cards, charts, using Steam theme variables */
+
+.welcome-container { /* Example from index.html */
+    background: none;
+    border: none;
+    box-shadow: none;
+    padding: 0 0 1.5rem 0;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--steam-border-color);
+}
+.welcome-container h1 { color: #fff; }
+.welcome-container p { color: var(--steam-grey-text); }
+
+/* Add more styles as needed based on developer.html's content */
