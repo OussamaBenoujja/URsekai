@@ -1,0 +1,22 @@
+    margin-top: 1.5rem;
+}
+
+/* Debug section */
+.debug-section {
+    /* Inherits from steam-theme.css */
+    margin-top: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    .form-tabs {
+        overflow-x: auto; /* Allow horizontal scroll for tabs */
+    }
+    .tab-button {
+        white-space: nowrap; /* Prevent wrapping */
+    }
+}
