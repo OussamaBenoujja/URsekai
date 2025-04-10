@@ -1,0 +1,41 @@
+    /* Inherits from steam-theme.css */
+    margin-top: 2rem;
+}
+.toggle-debug {
+    cursor: pointer;
+    color: var(--steam-light-blue);
+    text-decoration: underline;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    display: inline-block;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .charts-container {
+        grid-template-columns: 1fr; /* Stack charts on smaller screens */
+    }
+}
+
+@media (max-width: 576px) {
+     .metrics-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Smaller cards on mobile */
+    }
+    .metric-value {
+        font-size: 1.5rem;
+    }
+    .game-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .game-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+     .game-actions .btn, .game-actions .date-range-selector {
+         width: 100%;
+     }
+     .date-range-selector select {
+         width: 100%;
+     }
+}
