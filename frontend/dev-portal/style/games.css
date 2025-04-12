@@ -1,0 +1,3 @@
+#games-list-container .alert {
+    grid-column: 1 / -1; /* Span full grid width */
+}
