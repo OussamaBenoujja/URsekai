@@ -1,0 +1,13 @@
+.table .btn {
+    margin-right: 0.3rem;
+    padding: 0.25rem 0.5rem; /* Make buttons smaller */
+    font-size: 0.8rem;
+}
+.table .btn:last-child {
+    margin-right: 0;
+}
+
+/* Alert messages */
+#messages .alert {
+    margin-bottom: 1.5rem;
+}
