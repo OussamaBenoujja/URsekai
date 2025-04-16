@@ -1,0 +1,13 @@
+        font-size: 1.8rem;
+    }
+    .game-buttons {
+        width: 100%;
+        display: flex;
+        gap: 0.5rem;
+    }
+     .game-buttons .btn,
+     .game-buttons button {
+         flex-grow: 1; /* Make buttons fill space */
+         margin-left: 0;
+     }
+}
