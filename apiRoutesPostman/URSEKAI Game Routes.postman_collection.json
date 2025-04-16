@@ -1,0 +1,520 @@
+{
+	"info": {
+		"_postman_id": "2ec27293-73fe-4909-8e55-2f800c0ff1a2",
+		"name": "URSEKAI Game Routes",
+		"description": "Game-related API routes for the URSEKAI gaming platform",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "43019049"
+	},
+	"item": [
+		{
+			"name": "Game Browsing",
+			"item": [
+				{
+					"name": "Browse Games",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/games"
+					},
+					"response": []
+				},
+				{
+					"name": "Featured Games",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/games/featured"
+					},
+					"response": []
+				},
+				{
+					"name": "Newest Games",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/games/newest"
+					},
+					"response": []
+				},
+				{
+					"name": "Most Played Games",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/games/most-played"
+					},
+					"response": []
+				},
+				{
+					"name": "Top Rated Games",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/games/top-rated"
+					},
+					"response": []
+				},
+				{
+					"name": "Game Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/games/categories"
+					},
+					"response": []
+				},
+				{
+					"name": "Game Tags",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/games/tags"
+					},
+					"response": []
+				},
+				{
+					"name": "Game Details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/games/game-slug"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User Game Actions",
+			"item": [
+				{
+					"name": "Favorite Game",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": "{{baseUrl}}/api/games/1/favorite"
+					},
+					"response": []
+				},
+				{
+					"name": "Unfavorite Game",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": "{{baseUrl}}/api/games/1/favorite"
+					},
+					"response": []
+				},
+				{
+					"name": "User Favorites",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": "{{baseUrl}}/api/games/favorites"
+					},
+					"response": []
+				},
+				{
+					"name": "User Game Stats",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": "{{baseUrl}}/api/games/1/stats"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Game Reviews",
+			"item": [
+				{
+					"name": "Get Game Reviews",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/games/1/reviews"
+					},
+					"response": []
+				},
+				{
+					"name": "Submit Review",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"rating\": 4.5,\n    \"title\": \"Great game!\",\n    \"content\": \"This is an amazing game with great graphics and gameplay.\",\n    \"has_spoilers\": false\n}"
+						},
+						"url": "{{baseUrl}}/api/games/1/reviews"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Review",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"rating\": 5,\n    \"title\": \"Amazing Game!\",\n    \"content\": \"Updated review content.\",\n    \"has_spoilers\": false\n}"
+						},
+						"url": "{{baseUrl}}/api/games/1/reviews/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Review",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": "{{baseUrl}}/api/games/1/reviews/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Vote on Review",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"vote\": \"upvote\"\n}"
+						},
+						"url": "{{baseUrl}}/api/games/1/reviews/1/vote"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Review Comments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/games/1/reviews/1/comments"
+					},
+					"response": []
+				},
+				{
+					"name": "Add Comment to Review",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\": \"I agree with this review!\"\n}"
+						},
+						"url": "{{baseUrl}}/api/games/1/reviews/1/comments"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Comment",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": "{{baseUrl}}/api/games/1/reviews/comments/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Developer Game Management",
+			"item": [
+				{
+					"name": "List Developer Games",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": "{{baseUrl}}/api/developer/games"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Game",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"New Game\",\n    \"short_description\": \"A brief description\",\n    \"description\": \"Full description of the game\",\n    \"main_category_id\": 2,\n    \"age_rating\": \"E\",\n    \"monetization_type\": \"free\",\n    \"thumbnail\": \"base64-encoded-image-data\"\n}"
+						},
+						"url": "{{baseUrl}}/api/developer/games"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Game Details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": "{{baseUrl}}/api/developer/games/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Game",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Updated Game Title\",\n    \"short_description\": \"Updated description\",\n    \"description\": \"Updated full description\",\n    \"main_category_id\": 3,\n    \"age_rating\": \"E10+\"\n}"
+						},
+						"url": "{{baseUrl}}/api/developer/games/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Upload Assets",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "asset_type",
+									"value": "main_game",
+									"type": "text"
+								},
+								{
+									"key": "asset_file",
+									"type": "file",
+									"src": "/path/to/file.js"
+								},
+								{
+									"key": "version",
+									"value": "1.0.0",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{baseUrl}}/api/developer/games/1/assets"
+					},
+					"response": []
+				},
+				{
+					"name": "Upload Screenshots",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "screenshots[]",
+									"type": "file",
+									"src": "/path/to/screenshot1.jpg"
+								},
+								{
+									"key": "screenshots[]",
+									"type": "file",
+									"src": "/path/to/screenshot2.jpg"
+								},
+								{
+									"key": "captions[]",
+									"value": "Gameplay screenshot",
+									"type": "text"
+								},
+								{
+									"key": "captions[]",
+									"value": "Menu screenshot",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{baseUrl}}/api/developer/games/1/screenshots"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Screenshot",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": "{{baseUrl}}/api/developer/games/1/screenshots/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Publish Game",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": "{{baseUrl}}/api/developer/games/1/publish"
+					},
+					"response": []
+				},
+				{
+					"name": "Unpublish Game",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": "{{baseUrl}}/api/developer/games/1/unpublish"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8000",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "your-auth-token-here",
+			"type": "string"
+		}
+	]
+}
