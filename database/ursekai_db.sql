@@ -693,7 +693,7 @@ CREATE FULLTEXT INDEX ft_game_reviews_title_content ON game_reviews(title, conte
 -- ------------------------------------------
 
 -- Insert default system settings
-INSERT INTO system_settings (category, name, value, data_type, description, is_public) VALUES 
+INSERT INTO system_settings (category, name, value, data_type, description, is_public) VALUES
 ('general', 'site_name', 'URSEKAI', 'string', 'The name of the platform', true),
 ('general', 'site_description', 'A unified platform for WebGL games', 'string', 'Brief description of the platform', true),
 ('general', 'maintenance_mode', 'false', 'boolean', 'Whether the site is in maintenance mode', true),
@@ -707,7 +707,7 @@ INSERT INTO system_settings (category, name, value, data_type, description, is_p
 ('user', 'registration_enabled', 'true', 'boolean', 'Whether new user registration is enabled', true);
 
 -- Insert default game categories
-INSERT INTO game_categories (name, description, display_order, is_active) VALUES 
+INSERT INTO game_categories (name, description, display_order, is_active) VALUES
 ('Action', 'Fast-paced games requiring quick reflexes', 1, true),
 ('Adventure', 'Story-driven exploration games', 2, true),
 ('Puzzle', 'Brain teasers and logic puzzles', 3, true),
@@ -722,7 +722,7 @@ INSERT INTO game_categories (name, description, display_order, is_active) VALUES
 ('Casual', 'Simple games for quick play sessions', 12, true);
 
 -- Insert common game tags
-INSERT INTO game_tags (name, description, is_active) VALUES 
+INSERT INTO game_tags (name, description, is_active) VALUES
 ('2D', 'Two-dimensional games', true),
 ('3D', 'Three-dimensional games', true),
 ('Pixel Art', 'Games with pixel art style graphics', true),
@@ -745,7 +745,7 @@ INSERT INTO game_tags (name, description, is_active) VALUES
 ('Relaxing', 'Low-stress games designed for relaxation', true);
 
 -- Insert default badges
-INSERT INTO badges (name, description, icon_url, category, points, is_hidden, is_active) VALUES 
+INSERT INTO badges (name, description, icon_url, category, points, is_hidden, is_active) VALUES
 ('Early Adopter', 'Joined during the platform\'s launch period', '/assets/badges/early_adopter.png', 'Platform', 50, false, true),
 ('Game Master', 'Played 100 different games', '/assets/badges/game_master.png', 'Gaming', 100, false, true),
 ('Social Butterfly', 'Made friends with 50 other users', '/assets/badges/social_butterfly.png', 'Social', 75, false, true),
@@ -758,23 +758,23 @@ INSERT INTO badges (name, description, icon_url, category, points, is_hidden, is
 ('Game Jam Winner', 'Won a platform-hosted game jam', '/assets/badges/game_jam_winner.png', 'Development', 300, false, true);
 
 -- Insert virtual currencies
-INSERT INTO currencies (code, name, description, exchange_rate_to_usd, is_premium, is_tradable, is_active) VALUES 
+INSERT INTO currencies (code, name, description, exchange_rate_to_usd, is_premium, is_tradable, is_active) VALUES
 ('URSC', 'URSEKAI Coins', 'Standard platform currency used for transactions', 0.01, true, false, true),
 ('URGM', 'Game Gems', 'Earned through gameplay and achievements', NULL, false, true, true);
 
 -- Insert subscription plans
-INSERT INTO subscriptions (name, description, price, currency, billing_cycle, features, is_active, is_featured) VALUES 
+INSERT INTO subscriptions (name, description, price, currency, billing_cycle, features, is_active, is_featured) VALUES
 ('URSEKAI Basic', 'Basic subscription with premium features', 4.99, 'USD', 'monthly', '{"ad_free": true, "monthly_coins": 500, "exclusive_badges": true}', true, false),
 ('URSEKAI Pro', 'Premium subscription with enhanced features', 9.99, 'USD', 'monthly', '{"ad_free": true, "monthly_coins": 1200, "exclusive_badges": true, "game_discounts": true, "early_access": true}', true, true),
 ('URSEKAI Developer', 'Subscription for game developers', 19.99, 'USD', 'monthly', '{"ad_free": true, "monthly_coins": 2000, "exclusive_badges": true, "game_discounts": true, "early_access": true, "reduced_platform_fees": true, "premium_analytics": true, "priority_support": true}', true, false),
 ('URSEKAI Annual', 'Annual subscription with the best value', 49.99, 'USD', 'annually', '{"ad_free": true, "monthly_coins": 1500, "exclusive_badges": true, "game_discounts": true, "early_access": true, "bonus_annual_coins": 5000}', true, true);
 
 -- Create admin user (you should change this password in production!)
-INSERT INTO users (username, email, password_hash, first_name, last_name, display_name, role, is_active, is_email_verified, registration_date) 
+INSERT INTO users (username, email, password_hash, first_name, last_name, display_name, role, is_active, is_email_verified, registration_date)
 VALUES ('admin', 'admin@ursekai.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Admin', 'User', 'Admin', 'admin', true, true, NOW());
 
 -- Create forums
-INSERT INTO forums (name, description, slug, display_order, is_active) VALUES 
+INSERT INTO forums (name, description, slug, display_order, is_active) VALUES
 ('Announcements', 'Official platform announcements and news', 'announcements', 1, true),
 ('General Discussion', 'General discussion about the platform and games', 'general-discussion', 2, true),
 ('Game Development', 'Discussions related to developing WebGL games', 'game-development', 3, true),
@@ -792,12 +792,12 @@ CREATE PROCEDURE update_game_ratings(IN game_id_param INT)
 BEGIN
     DECLARE avg_rating DECIMAL(3,2);
     DECLARE total_count INT;
-    
-    SELECT AVG(rating), COUNT(*) 
+
+    SELECT AVG(rating), COUNT(*)
     INTO avg_rating, total_count
     FROM game_reviews
     WHERE game_id = game_id_param AND is_hidden = FALSE;
-    
+
     UPDATE games
     SET average_rating = avg_rating,
         total_ratings = total_count
@@ -842,18 +842,18 @@ BEGIN
     DECLARE thread_count INT;
     DECLARE post_count INT;
     DECLARE last_post INT;
-    
+
     -- Count threads
     SELECT COUNT(*) INTO thread_count
     FROM forum_threads
     WHERE forum_id = forum_id_param AND is_hidden = FALSE;
-    
+
     -- Count posts across all threads in forum
     SELECT COUNT(p.post_id) INTO post_count
     FROM forum_posts p
     JOIN forum_threads t ON p.thread_id = t.thread_id
     WHERE t.forum_id = forum_id_param AND p.is_hidden = FALSE AND t.is_hidden = FALSE;
-    
+
     -- Find last post
     SELECT p.post_id INTO last_post
     FROM forum_posts p
@@ -861,7 +861,7 @@ BEGIN
     WHERE t.forum_id = forum_id_param AND p.is_hidden = FALSE AND t.is_hidden = FALSE
     ORDER BY p.created_at DESC
     LIMIT 1;
-    
+
     -- Update forum statistics
     UPDATE forums
     SET total_threads = thread_count,
@@ -878,12 +878,12 @@ AFTER INSERT ON forum_posts
 FOR EACH ROW
 BEGIN
     DECLARE forum_id_val INT;
-    
+
     -- Get forum ID from thread
     SELECT forum_id INTO forum_id_val
     FROM forum_threads
     WHERE thread_id = NEW.thread_id;
-    
+
     -- Update thread's last post info
     UPDATE forum_threads
     SET last_post_at = NOW(),
@@ -891,7 +891,7 @@ BEGIN
         last_poster_id = NEW.user_id,
         total_posts = total_posts + 1
     WHERE thread_id = NEW.thread_id;
-    
+
     -- Update forum statistics
     CALL update_forum_statistics(forum_id_val);
 END $
@@ -916,9 +916,9 @@ CREATE PROCEDURE record_game_play(
 BEGIN
     -- Insert play record
     INSERT INTO game_playtime (
-        game_id, user_id, session_id, 
+        game_id, user_id, session_id,
         start_time, end_time, duration_minutes,
-        is_complete, device_type, browser, 
+        is_complete, device_type, browser,
         operating_system, screen_resolution, ip_address,
         country, city, game_version
     ) VALUES (
@@ -928,13 +928,13 @@ BEGIN
         p_operating_system, p_screen_resolution, p_ip_address,
         p_country, p_city, p_game_version
     );
-    
+
     -- Update game statistics
     UPDATE games
     SET total_plays = total_plays + 1,
         total_playtime_minutes = total_playtime_minutes + p_duration_minutes
     WHERE game_id = p_game_id;
-    
+
     -- If user is logged in, update their stats
     IF p_user_id IS NOT NULL THEN
         -- Update game progression for user
@@ -946,16 +946,16 @@ BEGIN
             last_played = NOW(),
             times_played = times_played + 1,
             total_time_played_minutes = total_time_played_minutes + p_duration_minutes;
-            
+
         -- Update user playtime stats
         UPDATE users
         SET total_playtime_minutes = total_playtime_minutes + p_duration_minutes
         WHERE user_id = p_user_id;
     END IF;
-    
+
     -- Check for unique player
     IF NOT EXISTS (
-        SELECT 1 FROM game_playtime 
+        SELECT 1 FROM game_playtime
         WHERE game_id = p_game_id AND user_id = p_user_id AND start_time < DATE_SUB(NOW(), INTERVAL 24 HOUR)
     ) AND p_user_id IS NOT NULL THEN
         -- Increment unique players
@@ -979,7 +979,7 @@ BEGIN
         total_games, new_games, total_plays,
         total_playtime_minutes, total_transactions, total_revenue
     )
-    SELECT 
+    SELECT
         CURRENT_DATE - INTERVAL 1 DAY,
         (SELECT COUNT(*) FROM users),
         (SELECT COUNT(*) FROM users WHERE DATE(registration_date) = CURRENT_DATE - INTERVAL 1 DAY),
@@ -990,13 +990,13 @@ BEGIN
         (SELECT COALESCE(SUM(duration_minutes), 0) FROM game_playtime WHERE DATE(start_time) = CURRENT_DATE - INTERVAL 1 DAY),
         (SELECT COUNT(*) FROM transactions WHERE DATE(created_at) = CURRENT_DATE - INTERVAL 1 DAY AND status = 'completed'),
         (SELECT COALESCE(SUM(amount), 0) FROM transactions WHERE DATE(created_at) = CURRENT_DATE - INTERVAL 1 DAY AND status = 'completed');
-        
+
     -- Insert game metrics for each active game
     INSERT INTO analytics_game_metrics (
         game_id, date, total_plays, unique_players,
         average_playtime_minutes, total_playtime_minutes
     )
-    SELECT 
+    SELECT
         g.game_id,
         CURRENT_DATE - INTERVAL 1 DAY,
         COUNT(*),
@@ -1007,10 +1007,10 @@ BEGIN
     JOIN games g ON gp.game_id = g.game_id
     WHERE DATE(start_time) = CURRENT_DATE - INTERVAL 1 DAY
     GROUP BY g.game_id;
-    
+
     -- Clean up old sessions
     DELETE FROM sessions WHERE expires_at < NOW();
-    
+
     -- Reset daily login counters if needed
     -- Add other maintenance tasks here
 END $
@@ -1022,7 +1022,7 @@ DELIMITER ;
 
 -- View: active_games
 CREATE VIEW vw_active_games AS
-SELECT 
+SELECT
     g.game_id, g.title, g.description, g.developer_id, d.company_name,
     g.release_date, g.average_rating, g.total_plays, g.total_unique_players,
     g.total_playtime_minutes, g.monetization_type, g.price
@@ -1032,7 +1032,7 @@ WHERE g.is_published = TRUE AND g.is_approved = TRUE;
 
 -- View: active_users
 CREATE VIEW vw_active_users AS
-SELECT 
+SELECT
     u.user_id, u.username, u.email, u.display_name,
     u.registration_date, u.last_login_date, u.account_level,
     u.total_playtime_minutes,
@@ -1045,7 +1045,7 @@ WHERE u.is_active = TRUE AND u.is_banned = FALSE;
 
 -- View: developer_revenue
 CREATE VIEW vw_developer_revenue AS
-SELECT 
+SELECT
     d.developer_id, d.user_id, u.username, d.company_name,
     g.game_id, g.title,
     COALESCE(SUM(t.amount), 0) AS total_revenue,
@@ -1059,12 +1059,12 @@ GROUP BY d.developer_id, g.game_id;
 
 -- View: game_performance
 CREATE VIEW vw_game_performance AS
-SELECT 
+SELECT
     g.game_id, g.title, g.developer_id, d.company_name,
     g.release_date, g.average_rating, g.total_ratings,
     g.total_plays, g.total_unique_players, g.total_playtime_minutes,
     COALESCE(
-        (SELECT SUM(t.amount) FROM transactions t WHERE t.game_id = g.game_id AND t.status = 'completed'), 
+        (SELECT SUM(t.amount) FROM transactions t WHERE t.game_id = g.game_id AND t.status = 'completed'),
         0
     ) AS total_revenue,
     (SELECT COUNT(*) FROM achievements a WHERE a.game_id = g.game_id) AS achievement_count,
@@ -1812,4 +1812,4 @@ CREATE TABLE chat_room_members (
     FOREIGN KEY (muted_by) REFERENCES users(user_id) ON DELETE SET NULL,
     FOREIGN KEY (banned_by) REFERENCES users(user_id) ON DELETE SET NULL,
     UNIQUE KEY (room_id, user_id)
-) ENGINE=InnoDB;
+) ENGINE=InnoDB;4
