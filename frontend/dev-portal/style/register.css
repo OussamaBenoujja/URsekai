@@ -1,0 +1,8 @@
+.auth-links a:hover {
+    color: #ffffff;
+}
+
+/* Alert styling */
+.alert {
+    margin-bottom: 1.5rem;
+}
