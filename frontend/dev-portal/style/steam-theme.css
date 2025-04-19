@@ -1,0 +1,10 @@
+    background-color: var(--steam-card-bg) !important;
+    color: var(--steam-grey-text) !important;
+}
+
+/* Override form input background/color from theme.css */
+input, select, textarea {
+    background-color: var(--steam-input-bg) !important;
+    color: #ffffff !important;
+    border: 1px solid var(--steam-input-border) !important;
+}
