@@ -1,0 +1,22 @@
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 mb-1">Ban Duration (days)</label>
+                        <input type="number" name="ban_days" placeholder="0 = permanent ban" class="w-full border px-3 py-2 rounded" min="0" required>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 mb-1">Reason</label>
+                        <textarea name="reason" placeholder="Reason for ban" class="w-full border px-3 py-2 rounded" rows="3" required></textarea>
+                    </div>
+                    <div id="ban-error" class="text-red-600 hidden"></div>
+                </form>
+            </div>
+            <div class="bg-gray-100 p-4 border-t flex justify-end space-x-2">
+                <button class="close-modal bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">Cancel</button>
+                <button id="confirm-ban-btn" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Ban User</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/dashboard.js"></script>
+</body>
+</html>
