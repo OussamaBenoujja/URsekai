@@ -1,25 +1,21 @@
-                   ->where('is_read', false)
-                   ->update([
-                       'is_read' => true,
-                       'read_at' => now()
-                   ]);
         
-        return $this->success(null, 'All notifications marked as read');
+        return $this->success(null, 'Notification deleted successfully');
     }
     
     /**
-     * Delete a notification.
+     * Get unread notification count.
      *
      * @param Request $request
-     * @param int $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy(Request $request, $id)
+    public function unreadCount(Request $request)
     {
         $user = Auth::user();
         
-        $notification = Notification::where('notification_id', $id)
-                                   ->where('user_id', $user->user_id)
-                                   ->firstOrFail();
+        $count = Notification::where('user_id', $user->user_id)
+                           ->where('is_read', false)
+                           ->count();
         
-        $notification->delete();
+        return $this->success(['count' => $count]);
+    }
+}
