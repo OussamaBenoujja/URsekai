@@ -1,0 +1,18 @@
+/* Styles specific to upload.html */
+
+.form-check input[type="checkbox"] {
+    vertical-align: middle; /* Align checkbox vertically with the label text */
+    width: auto; /* Override default width: 100% from developerStyle.css */
+    margin-right: 0.5rem;
+}
+
+.form-check label {
+    display: inline; /* Allow label to sit next to the checkbox */
+    margin-bottom: 0; /* Remove default bottom margin */
+}
+
+/* Ensure the container aligns items correctly */
+.form-check {
+    display: flex;
+    align-items: center; /* Vertically center items in the container */
+}
