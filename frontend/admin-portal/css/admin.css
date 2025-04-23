@@ -1,0 +1,18 @@
+}
+
+/* Default game thumbnail image */
+img.w-12.h-12.rounded {
+    object-fit: cover;
+    background-color: #e5e7eb;
+}
+
+/* Flash message animation */
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    70% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.flash-message {
+    animation: fadeOut 3s forwards;
+}
