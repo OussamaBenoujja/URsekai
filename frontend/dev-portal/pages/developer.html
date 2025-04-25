@@ -1,0 +1,21 @@
+                        link.parentElement.classList.add('active'); // Activate current parent li
+                    }
+                });
+
+                sections.forEach(sec => {
+                    sec.classList.remove('active');
+                    if (`#${sec.id}` === hash) {
+                        sec.classList.add('active');
+                    }
+                });
+            }
+
+            window.addEventListener('hashchange', setActiveSection);
+            setActiveSection(); // Initial setup
+
+            // Load dashboard data, charts, etc.
+            // loadDashboardData();
+
+        });
+    </script>
+</body>
