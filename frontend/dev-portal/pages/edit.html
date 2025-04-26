@@ -1,0 +1,104 @@
+                    // screenshotFiles.forEach((file, index) => {
+                    //     formData.append(`screenshots[${index}]`, file); // Send as array
+                    // });
+                    
+                    // Handle removed existing screenshots (This logic seems incorrect as the backend doesn't expect 'remove_screenshots')
+                    // Deletion is handled via the DELETE endpoint when the 'x' is clicked.
+                    // We don't need to send removed IDs during the main update.
+                    /*
+                    const removedScreenshotIds = [];
+                    const currentScreenshotElements = screenshotsContainer.querySelectorAll('.screenshot-item[data-existing-id]');
+                    const currentExistingIds = Array.from(currentScreenshotElements).map(el => el.dataset.existingId);
+                    existingScreenshots.forEach(ss => {
+                        // Assuming ss.id exists and is the correct identifier
+                        if (ss.id && !currentExistingIds.includes(ss.id.toString())) { 
+                            removedScreenshotIds.push(ss.id);
+                        }
+                    });
+                    if (removedScreenshotIds.length > 0) {
+                         // The backend update method doesn't handle this. Deletion is separate.
+                         // formData.append('remove_screenshots', JSON.stringify(removedScreenshotIds)); 
+                         debug("Note: Removed screenshot IDs are handled by separate DELETE requests, not included in PUT.", removedScreenshotIds);
+                    }
+                    */
+
+                    // *** Add _method for Laravel PUT/PATCH spoofing ***
+                    formData.append('_method', 'PUT'); 
+
+                    debug("Submitting Main FormData keys:", Array.from(formData.keys()));
+                    // Log file names for debugging
+                     if (thumbnailFile) debug("Thumbnail file:", thumbnailFile.name);
+                     if (bannerFile) debug("Banner file:", bannerFile.name);
+                     if (gameFile) debug("Game file:", gameFile.name);
+                     // if (removedScreenshotIds.length > 0) debug("Removed screenshot IDs:", removedScreenshotIds); // Removed
+
+
+                    try {
+                        // Use POST because HTML forms + FormData don't natively support PUT/PATCH
+                        const response = await fetch(`${API_URL}/developer/games/${gameId}`, {
+                            method: 'POST', // Send as POST, Laravel will use _method from body
+                            headers: {
+                                'Authorization': `Bearer ${token}`,
+                                'Accept': 'application/json',
+                                // 'Content-Type': 'multipart/form-data' // DON'T set this, browser does it automatically for FormData
+                                // '_method': 'PUT' // REMOVED from headers
+                            },
+                            body: formData
+                        });
+
+                        const result = await response.json();
+                        debug("Save response:", result);
+
+                        if (response.ok) {
+                            showMessage('Game updated successfully!', 'success');
+                            // Reload data to reflect changes, including newly uploaded/deleted screenshots
+                            await loadGameData(); 
+                            await loadExistingScreenshots(); // Explicitly reload screenshots
+                            updateScreenshotUploadState(); // Update the add button state
+
+                            // Reset file inputs/variables after successful save
+                            thumbnailFile = null;
+                            bannerFile = null;
+                            gameFile = null;
+                            // screenshotFiles = []; // Already cleared if upload was successful
+                            document.getElementById('thumbnail').value = '';
+                            document.getElementById('banner').value = '';
+                            document.getElementById('game_file').value = '';
+                            document.getElementById('screenshots').value = '';
+
+                        } else {
+                            let errorMsg = result.message || 'Failed to update game.';
+                            if (result.errors) {
+                                errorMsg += ' ' + Object.values(result.errors).flat().join(' ');
+                            }
+                            throw new Error(errorMsg);
+                        }
+                    } catch (error) {
+                        debug("Save error:", error);
+                        showMessage(`Error saving game: ${error.message}`, 'error');
+                    } finally {
+                        saveButton.disabled = false;
+                        saveButton.innerHTML = '<i class="fas fa-save"></i> Save Changes';
+                    }
+                });
+
+                function showMessage(msg, type) {
+                    messageContainer.textContent = msg;
+                    messageContainer.className = `alert ${type === 'success' ? 'alert-success' : (type === 'warning' ? 'alert-warning' : 'alert-danger')}`;
+                    messageContainer.style.display = msg ? 'block' : 'none';
+                     if (type === 'error' || type === 'warning') {
+                        window.scrollTo(0, 0); // Scroll to top to make error visible
+                    }
+                }
+
+                // Initial load
+                await loadCategories(); // Load categories first
+                await loadAgeRatings(); // Then load age ratings
+                await loadGameData(); // Then load game data
+                // await loadExistingScreenshots(); // This is now called within loadGameData or after successful save
+                updateScreenshotUploadState(); // Initial state for add button
+
+            });
+        </script>
+    </body>
+</html>
