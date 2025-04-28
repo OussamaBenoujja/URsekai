@@ -1,0 +1,48 @@
+                        }
+                        status.className = `badge ${statusClass}`;
+                        status.textContent = statusText;
+
+
+                        const description = document.createElement('p');
+                        description.className = 'game-description';
+                        description.textContent = game.short_description || 'No description available.';
+
+                        const actions = document.createElement('div');
+                        actions.className = 'game-actions';
+
+                        const editButton = document.createElement('a');
+                        editButton.href = `/developer/game/${game.game_id}/edit`;
+                        editButton.className = 'btn btn-secondary btn-sm';
+                        editButton.innerHTML = '<i class="fas fa-edit"></i> Edit';
+
+                        const manageButton = document.createElement('a');
+                        console.log(`Creating manage button link for game ID: ${game.game_id}`); // <-- Add this line
+                        manageButton.href = `manage-game.html?gameId=${game.game_id}`;
+                        manageButton.className = 'btn btn-outline btn-sm';
+                        manageButton.innerHTML = '<i class="fas fa-cog"></i> Manage';
+
+                        const metricsButton = document.createElement('a');
+                        metricsButton.href = `/developer/game/${game.game_id}/analytics`;
+                        metricsButton.className = 'btn btn-outline btn-sm';
+                        metricsButton.innerHTML = '<i class="fas fa-chart-line"></i> Metrics';
+
+
+                        actions.appendChild(editButton);
+                        actions.appendChild(manageButton);
+                        actions.appendChild(metricsButton);
+
+                        cardBody.appendChild(title);
+                        cardBody.appendChild(status);
+                        cardBody.appendChild(description);
+                        cardBody.appendChild(actions);
+
+                        card.appendChild(thumbnail);
+                        card.appendChild(cardBody);
+                        grid.appendChild(card);
+                    });
+                    gamesListContainer.appendChild(grid);
+                }
+            });
+        </script>
+    </body>
+</html>
