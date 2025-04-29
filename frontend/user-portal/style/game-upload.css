@@ -1,0 +1,49 @@
+.toast-icon.warning {
+    color: var(--warning-color);
+}
+
+.toast-icon.error {
+    color: var(--danger-color);
+}
+
+.toast-message {
+    flex-grow: 1;
+    font-size: 14px;
+}
+
+.toast-progress {
+    height: 3px;
+    background-color: var(--success-color);
+    animation: progress 3s linear;
+}
+
+@keyframes progress {
+    from {
+        width: 100%;
+    }
+    to {
+        width: 0;
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .navbar {
+        flex-wrap: wrap;
+    }
+
+    .nav-links {
+        order: 3;
+        width: 100%;
+        margin-top: 15px;
+        overflow-x: auto;
+    }
+
+    .form-buttons {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
