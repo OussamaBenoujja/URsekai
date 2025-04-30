@@ -1,0 +1,41 @@
+                                    authMessage.style.display = "block";
+
+                                    // Redirect to developer dashboard
+                                    setTimeout(() => {
+                                        window.location.href = "/developer";
+                                    }, 1000);
+                                } else {
+                                    authMessage.className = "alert alert-danger";
+                                    authMessage.textContent =
+                                        "You need a developer account to use this portal";
+                                    authMessage.style.display = "block";
+                                    // Ensure form remains visible
+                                    loginForm.style.display = "block";
+                                }
+                            } else {
+                                // Show error message
+                                authMessage.className = "alert alert-danger";
+                                authMessage.textContent =
+                                    data.message ||
+                                    "Login failed. Please check your credentials.";
+                                authMessage.style.display = "block";
+                                // Ensure form remains visible
+                                loginForm.style.display = "block";
+                            }
+                        } catch (error) {
+                            console.error("Login error:", error);
+                            authMessage.className = "alert alert-danger";
+                            authMessage.textContent =
+                                "Connection error. Please try again.";
+                            authMessage.style.display = "block";
+                            // Ensure form remains visible
+                            loginForm.style.display = "block";
+                        }
+                    });
+                } else {
+                    console.error("Could not find 'login-form'");
+                }
+            });
+        </script>
+    </body>
+</html>
