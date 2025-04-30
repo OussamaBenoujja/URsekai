@@ -1,0 +1,47 @@
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Connect With Us</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2025 URSEKAI. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Sidebar navigation logic
+        const navItems = document.querySelectorAll('.side-nav-item');
+        const sections = {
+            feed: document.getElementById('feed-section'),
+            groups: document.getElementById('groups-section'),
+            forums: document.getElementById('forums-section'),
+            friends: document.getElementById('friends-section')
+        };
+        navItems.forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                navItems.forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+                Object.values(sections).forEach(sec => sec.classList.remove('active'));
+                const section = this.getAttribute('data-section');
+                if (sections[section]) sections[section].classList.add('active');
+            });
+        });
+    });
+    </script>
+    <script src="../js/community.js"></script>
+</body>
+</html>
