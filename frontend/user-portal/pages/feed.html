@@ -1,0 +1,37 @@
+                                                modalPostBtn.disabled = true;
+                                            }
+                                        }
+                                    });
+                            });
+                        }
+                    });
+
+                // Post button in modal
+                modalPostBtn.addEventListener("click", function () {
+                    // Gather post content
+                    const postText = modalTextarea.value.trim();
+                    const mediaItems =
+                        document.querySelectorAll(".preview-item");
+
+                    // Simulate post creation
+                    alert(
+                        "Post created! In a real application, this would be sent to the backend.",
+                    );
+
+                    // Close modal
+                    createPostModal.classList.remove("active");
+                    document.body.classList.remove("modal-open");
+
+                    // Reset modal
+                    modalTextarea.value = "";
+                    document.getElementById("mediaPreview").innerHTML = "";
+                    document.getElementById("mediaPreview").style.display =
+                        "none";
+                    modalPostBtn.disabled = true;
+
+                    // In a real application, we would add the new post to the feed
+                });
+            });
+        </script>
+    </body>
+</html>
