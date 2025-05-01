@@ -1,0 +1,9 @@
+    .game-card-buttons button:active,
+    .follow-btn:active:not(:disabled) {
+        transform: scale(0.95);
+    }
+    
+    .developer-card:active {
+        transform: scale(0.98);
+    }
+}
