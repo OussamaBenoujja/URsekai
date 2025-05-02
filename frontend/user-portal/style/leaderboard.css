@@ -1,0 +1,50 @@
+}
+
+@media (max-width: 576px) {
+    .leaderboard-header-row {
+        display: none;
+    }
+
+    .leaderboard-row {
+        flex-wrap: wrap;
+    }
+
+    .rank-col {
+        width: 40px;
+    }
+
+    .game-col,
+    .player-col {
+        width: calc(100% - 100px);
+    }
+
+    .view-btn {
+        width: 60px;
+    }
+
+    .game-info,
+    .player-info {
+        gap: 8px;
+    }
+
+    .game-info img,
+    .player-info img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .pagination {
+        gap: 5px;
+    }
+
+    .pagination-btn {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
