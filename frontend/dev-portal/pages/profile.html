@@ -1,0 +1,14 @@
+                    document.querySelectorAll('.loading-placeholder').forEach(el => {
+                        el.textContent = 'Error';
+                        el.classList.remove('loading-placeholder');
+                    });
+                     document.getElementById('gamesGrid').innerHTML = '<p>Error loading games.</p>';
+                }
+            }
+
+            // --- Initialization ---
+            fetchData();
+        });
+    </script>
+</body>
+</html>
