@@ -1,50 +1,50 @@
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.btn-challenge::after,
+.view-profile-btn::after,
+.pagination-btn:not(:disabled)::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transition: opacity 0.2s;
 }
 
-.leaderboard-view {
-    animation: fadeIn 0.3s ease-out;
+.category-list a:hover::after,
+.period-list a:hover::after,
+.btn-view-details:hover::after,
+.btn-view-profile:hover::after,
+.btn-challenge:hover::after,
+.view-profile-btn:hover::after,
+.pagination-btn:not(:disabled):hover::after {
+    opacity: 1;
 }
 
-/* Scrollbar Styling */
-::-webkit-scrollbar {
-    width: 6px;
-}
-
-::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.1);
-    border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.1);
-    border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(0, 0, 0, 0.2);
-}
-
-/* Hover Effects */
-.category-list a,
-.period-list a,
-.btn-view-details,
-.btn-view-profile,
-.btn-challenge,
-.view-profile-btn,
-.pagination-btn:not(:disabled) {
+/* Active Game Effect */
+.leaderboard-row.highlighted {
     position: relative;
-    overflow: hidden;
 }
 
-.category-list a::after,
-.period-list a::after,
-.btn-view-details::after,
-.btn-view-profile::after,
+.leaderboard-row.highlighted::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background-color: var(--primary-color);
+}
+
+/* Special Label Styling */
+.player-status.online {
+    position: relative;
+    padding-left: 12px;
+}
+
+.player-status.online::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
